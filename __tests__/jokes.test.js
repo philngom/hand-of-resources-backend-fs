@@ -4,7 +4,7 @@ const request = require('supertest');
 const app = require('../lib/app');
 const Joke = require('../lib/models/Joke');
 
-describe('hand-of-resources-backend-fr routes', () => {
+describe('Jokes routes', () => {
   beforeEach(() => {
     return setup(pool);
   });

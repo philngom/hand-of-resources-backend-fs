@@ -105,7 +105,7 @@ describe('Jokes routes', () => {
     const res = await request(app).delete(`/api/v1/jokes/${joke.id}`);
 
     expect(res.body).toEqual(joke);
-    // expect(await Joke.getSingleJoke(joke.id)).toBeNull();
+    expect(await Joke.getSingleJoke(joke.id)).toBeNull();
 
   });
 

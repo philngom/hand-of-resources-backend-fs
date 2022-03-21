@@ -32,4 +32,26 @@ describe('Player routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  test('should get a player by its id', async () => {
+
+    const player = await Player.insert({
+      playerName: 'Lionel Messi',
+      age: 34,
+      club: 'Paris Saint-Germain'
+    });
+
+    const res = await request(app)
+      .get(`/api/v1/players/${player.id}`);
+
+    const expected = {
+      id: expect.any(String),
+      playerName: 'Lionel Messi',
+      age: 34,
+      club: 'Paris Saint-Germain'
+    };
+
+    expect(res.body).toEqual(expected);
+
+  });
+
 });

@@ -2,6 +2,7 @@
 -- The SQL in this file will be executed when you run `npm run setup-db`
 DROP TABLE IF EXISTS jokes;
 DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS cars;
 
 CREATE TABLE jokes (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -15,4 +16,11 @@ CREATE TABLE movies (
   title TEXT NOT NULL,
   director TEXT NOT NULL,
   main_cast TEXT []
-)
+);
+
+CREATE TABLE cars (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  year BIGINT NOT NULL,
+  make TEXT NOT NULL,
+  model TEXT NOT NULL
+);

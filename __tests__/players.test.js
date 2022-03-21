@@ -54,4 +54,24 @@ describe('Player routes', () => {
 
   });
 
+  test('get all players', async () => {
+    await Player.insert({
+      playerName: 'Lionel Messi',
+      age: 34,
+      club: 'Paris Saint-Germain'
+    });
+
+    const res = await request(app)
+      .get('/api/v1/players');
+
+    const expected = {
+      id: expect.any(String),
+      playerName: 'Lionel Messi',
+      age: 34,
+      club: 'Paris Saint-Germain'
+    };
+
+    expect(res.body).toEqual(expected);
+  });
+
 });

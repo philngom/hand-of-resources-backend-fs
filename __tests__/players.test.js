@@ -74,4 +74,51 @@ describe('Player routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  test('should update a player by id', async () => {
+
+    const player = await Player.insert({
+      playerName: 'Lionel Messi',
+      age: 34,
+      club: 'Paris Saint-Germain'
+    });
+
+    const res = await request(app)
+      .patch(`/api/v1/players/${player.id}`)
+      .send({
+        age: 29,
+        club: 'Barcelona'
+      });
+
+    const expected = {
+      id: expect.any(String),
+      playerName: 'Lionel Messi',
+      age: 29,
+      club: 'Barcelona'
+    };
+
+    expect(res.body).toEqual(expected);
+
+  });
+
+  test('should delete a player by its id', async () => {
+    const player = await Player.insert({
+      playerName: 'Lionel Messi',
+      age: 34,
+      club: 'Paris Saint-Germain'
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/players/${player.id}`);
+
+    const expected = {
+      id: expect.any(String),
+      playerName: 'Lionel Messi',
+      age: 34,
+      club: 'Paris Saint-Germain'
+    };
+
+    expect(res.body).toEqual(expected);
+    expect(await Player.getPlayer(player.id)).toBeNull();
+  });
+
 });
